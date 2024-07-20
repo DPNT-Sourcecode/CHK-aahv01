@@ -101,7 +101,9 @@ public class CheckoutSolution {
 
             if(specialOfferProducts.contains(item)){
                 specialOfferCount += count;
-                itemsWithSpecialOffer.add(item);
+                for (int i = 0; i < count; i++) {
+                    itemsWithSpecialOffer.add(item);
+                }
             }else if(item != 'B'  && item != 'Q'){
                 total += remaining * product.price;
             }
@@ -113,7 +115,7 @@ public class CheckoutSolution {
             total += applicableSets * 45;
             specialOfferCount %= 3;
         }
-        itemsWithSpecialOffer = itemsWithSpecialOffer.subList(itemsWithSpecialOffer.size() - specialOfferCount - 1, itemsWithSpecialOffer.size() - 1);
+        itemsWithSpecialOffer = itemsWithSpecialOffer.subList(itemsWithSpecialOffer.size() - specialOfferCount, itemsWithSpecialOffer.size());
         for(char item : itemsWithSpecialOffer){
             total += itemCount.get(item) * products.get(item).price;
         }
@@ -223,7 +225,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("SSSTX"));
+        System.out.println(checkoutSolution.checkout("SSSTTTX"));
     }
 }
+
 
