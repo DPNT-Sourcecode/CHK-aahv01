@@ -17,9 +17,6 @@ public class CheckoutSolution {
     final int specialCountB = 2;
 
     public Integer checkout(String skus) {
-        if(skus == null || skus.isEmpty()) {
-            return -1;
-        }
         Map<Character, Integer> itemCount = new HashMap<>();
         for(char item : skus.toCharArray()) {
             if(item != 'A' && item != 'B' && item != 'C' && item != 'D') {
@@ -50,9 +47,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("-"));
+        System.out.println(checkoutSolution.checkout(""));
     }
 }
+
 
 
 
