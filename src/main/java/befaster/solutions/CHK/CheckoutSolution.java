@@ -171,7 +171,7 @@ public class CheckoutSolution {
             countQ -= freeQ;
             if(countQ < 0) countQ = 0;
         }
-        if(!(countQ % 3 == 0)){
+        if(!(countQ % 3 == 0)  && countQ > 1){
             total += countQ * products.get('Q').price;
         }else{
             for(Offer offer : products.get('Q').specialOffers){
@@ -224,9 +224,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"));
+        System.out.println(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
     }
 }
+
 
 
 
