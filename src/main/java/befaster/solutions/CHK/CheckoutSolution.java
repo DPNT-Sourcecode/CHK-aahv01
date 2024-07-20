@@ -131,7 +131,14 @@ public class CheckoutSolution {
         if(!(countB % 2 == 0)){
             total += countB * products.get('B').price;
         }else{
-            total += countB * products.get('B').price / 2;
+            for(Offer offer : products.get('B').specialOffers){
+                if(countB >= offer.quantity){
+                    int numberOfOffers = countB / offer.quantity;
+                    total += numberOfOffers * offer.price;
+                    countB %= offer.quantity;
+                    itemCount.put('B', countB);
+                }
+            }
         }
 
        //Special case for F (buy 2 get 1 free)
@@ -209,4 +216,5 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"));
     }
 }
+
 
