@@ -78,6 +78,11 @@ public class CheckoutSolution {
             char item = entry.getKey();
             int count = entry.getValue();
             Product product = products.get(item);
+
+            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
+                continue;
+            }
+
             if(product.specialOffers.isEmpty()){
                 total += product.price * count;
                 continue;
@@ -159,3 +164,4 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("FFF"));
     }
 }
+
