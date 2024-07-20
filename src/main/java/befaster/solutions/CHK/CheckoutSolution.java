@@ -71,84 +71,79 @@ public class CheckoutSolution {
            itemCount.put(item, itemCount.getOrDefault(item, 0) + 1);
         }
 
-        // Calculate the total price
         int total = 0;
 
-        // Process products with general special offers first
-        for (Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
-            char productCode = entry.getKey();
+        //Process each product
+        for(Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
+            char item = entry.getKey();
             int count = entry.getValue();
-            Product product = products.get(productCode);
+            Product product = products.get(item);
 
-            // Skip special cases that will be handled separately
-            if (productCode == 'E' || productCode == 'F' || productCode == 'N' || productCode == 'R' || productCode == 'U') {
+            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
                 continue;
             }
 
-            // Apply special offers
-            if (!product.specialOffers.isEmpty()) {
-                int remainingCount = count;
-                for (Map.Entry<Integer, Integer> offer : product.specialOffers.entrySet()) {
-                    int offerQuantity = offer.getKey();
-                    int offerPrice = offer.getValue();
+            //Apply special offers
+            if(!product.specialOffers.isEmpty()){
+                int remaining = count;
+                for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
+                    int offerQuantity = specialOffer.getKey();
+                    int offerPrice = specialOffer.getValue();
 
-                    total += (remainingCount / offerQuantity) * offerPrice;
-                    remainingCount %= offerQuantity;
+                    total += offerPrice * (remaining / offerQuantity);
+                    count %= offerQuantity;
                 }
-                // Add remaining items at regular price
-                total += remainingCount * product.price;
-            } else {
-                // Add items at regular price
-                total += count * product.price;
+                total += remaining * product.price;
+            }else{
+
+                //Add remaining items at regular price
+                total += product.price * count;
             }
         }
 
-        // Special case for E giving free B
-        int countE = itemCount.getOrDefault('E', 0);
+        //Special case for E giving free B
         int countB = itemCount.getOrDefault('B', 0);
-        if (countE >= 2) {
+        int countE = itemCount.getOrDefault('E', 0);
+        if(countE >= 2){
             int freeB = countE / 2;
             countB -= freeB;
-            if (countB < 0) countB = 0;
+            if(countB < 0) countB = 0;
+            total += countB * products.get('B').price;
         }
-        // Add remaining B items at regular price
-        total += countB * products.get('B').price;
 
-        // Special case for F (buy 2 get 1 free)
+       //Special case for F (buy 2 get 1 free)
         int countF = itemCount.getOrDefault('F', 0);
-        if (countF >= 3) {
+        if(countF >= 3){
             total += (countF / 3) * 2 * products.get('F').price;
-            countF %= 3;
+            countF = countF % 3;
         }
         total += countF * products.get('F').price;
 
-        // Special case for N giving free M
-        int countN = itemCount.getOrDefault('N', 0);
+        //Special case for N giving free M
         int countM = itemCount.getOrDefault('M', 0);
-        if (countN >= 3) {
+        int countN = itemCount.getOrDefault('N', 0);
+        if(countN >= 3){
             int freeM = countN / 3;
             countM -= freeM;
-            if (countM < 0) countM = 0;
+            if(countM < 0) countM = 0;
+            total += countM * products.get('M').price;
         }
-        // Add remaining M items at regular price
-        total += countM * products.get('M').price;
 
-        // Special case for R giving free Q
-        int countR = itemCount.getOrDefault('R', 0);
+        //Special case for R giving free Q
         int countQ = itemCount.getOrDefault('Q', 0);
-        if (countR >= 3) {
+        int countR = itemCount.getOrDefault('R', 0);
+        if(countR >= 3){
             int freeQ = countR / 3;
             countQ -= freeQ;
-            if (countQ < 0) countQ = 0;
+            if(countQ < 0) countQ = 0;
+            total += countQ * products.get('Q').price;
         }
-        // Add remaining Q items at regular price
-        total += countQ * products.get('Q').price;
 
-        // Special case for U (buy 3 get 1 free)
+        //Special case for U (buy 3 get 1 free)
         int countU = itemCount.getOrDefault('U', 0);
-        if (countU >= 4) {
+        if(countU >= 4){
             total += (countU / 4) * 3 * products.get('U').price;
-            countU %= 4;
+            countU = countU % 4;
         }
         total += countU * products.get('U').price;
 
@@ -171,7 +166,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("B"));
+        System.out.println(checkoutSolution.checkout("M"));
     }
 }
+
 
