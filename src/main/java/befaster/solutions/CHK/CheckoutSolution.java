@@ -95,7 +95,7 @@ public class CheckoutSolution {
                 }
             }
 
-            if(item != 'B'){
+            if(item != 'B'  && item != 'Q'){
                 total += remaining * product.price;
             }
 
@@ -224,9 +224,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        System.out.println(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"));
     }
 }
+
 
 
 
