@@ -170,7 +170,18 @@ public class CheckoutSolution {
             int freeQ = countR / 3;
             countQ -= freeQ;
             if(countQ < 0) countQ = 0;
+        }
+        if(!(countQ % 3 == 0)){
             total += countQ * products.get('Q').price;
+        }else{
+            for(Offer offer : products.get('Q').specialOffers){
+                if(countQ >= offer.quantity){
+                    int numberOfOffers = countQ / offer.quantity;
+                    total += numberOfOffers * offer.price;
+                    countQ %= offer.quantity;
+                    itemCount.put('Q', countQ);
+                }
+            }
         }
 
         //Special case for U (buy 3 get 1 free)
@@ -216,5 +227,6 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"));
     }
 }
+
 
 
