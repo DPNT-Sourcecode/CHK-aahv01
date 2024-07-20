@@ -2,8 +2,7 @@ package befaster.solutions.CHK;
 
 import befaster.runner.SolutionNotImplementedException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CheckoutSolution {
 
@@ -78,14 +77,20 @@ public class CheckoutSolution {
             char item = entry.getKey();
             int count = entry.getValue();
             Product product = products.get(item);
+            int remaining = count;
 
-            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
-                continue;
+            for(Offer offer : product.specialOffers){
+                if(remaining >= offer.quantity){
+                    int numberOfOffers = remaining / offer.quantity;
+                    total += numberOfOffers * offer.price;
+                    remaining %= offer.quantity;
+                }
             }
 
+            total += remaining * product.price;
+
             //Apply special offers
-            if(!product.specialOffers.isEmpty()){
-                int remaining = count;
+           /* if(!product.specialOffers.isEmpty()){
                 for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
                     if(remaining < specialOffer.getKey()){
                         continue;
@@ -102,7 +107,7 @@ public class CheckoutSolution {
 
                 //Add remaining items at regular price
                 total += product.price * count;
-            }
+            }*/
         }
 
         //Special case for E giving free B
@@ -159,20 +164,33 @@ public class CheckoutSolution {
 
     class Product {
         int price;
-        Map<Integer, Integer> specialOffers;
+        List<Offer> specialOffers;
 
         public Product(int price) {
             this.price = price;
-            this.specialOffers = new HashMap<>();
+            this.specialOffers = new ArrayList<>();
         }
 
         public void addSpecialOffer(int count, int price) {
-            specialOffers.put(count, price);
+            specialOffers.add(new Offer(count, price));
+            Collections.sort(specialOffers, (o1, o2) -> Integer.compare(o2.quantity, o1.quantity));
         }
     }
 
+    class Offer {
+        int quantity;
+        int price;
+
+        public Offer(int quantity, int price) {
+            this.quantity = quantity;
+            this.price = price;
+        }
+    }
+
+
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("AAAAA"));
+        System.out.println(checkoutSolution.checkout("AAA"));
     }
 }
+
