@@ -90,6 +90,7 @@ public class CheckoutSolution {
                     int numberOfOffers = remaining / offer.quantity;
                     total += numberOfOffers * offer.price;
                     remaining %= offer.quantity;
+                    itemCount.put(item, remaining);
                 }
             }
 
@@ -202,9 +203,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("BBB"));
+        System.out.println(checkoutSolution.checkout("BB"));
     }
 }
+
 
 
 
