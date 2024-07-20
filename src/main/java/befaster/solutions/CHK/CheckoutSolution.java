@@ -75,7 +75,7 @@ public class CheckoutSolution {
 
         int specialOfferCount = 0;
 
-        Set<Character> itemsWithSpecialOffer = new HashSet<>();
+        List<Character> itemsWithSpecialOffer = new ArrayList<>();
 
         //Process each product
         for(Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
@@ -113,7 +113,7 @@ public class CheckoutSolution {
             total += applicableSets * 45;
             specialOfferCount %= 3;
         }
-        itemsWithSpecialOffer = itemsWithSpecialOffer.
+        itemsWithSpecialOffer = Arrays.copyOfRange(itemsWithSpecialOffer, itemsWithSpecialOffer.size() - specialOfferCount, itemsWithSpecialOffer.size());
         for(char item : itemsWithSpecialOffer){
             total += itemCount.get(item) * products.get(item).price;
         }
@@ -226,7 +226,3 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("SSSTX"));
     }
 }
-
-
-
-
