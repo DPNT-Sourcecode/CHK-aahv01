@@ -80,7 +80,8 @@ public class CheckoutSolution {
             Product product = products.get(item);
             int remaining = count;
 
-            if(item == 'U' || item == 'F' || item == 'M' || item == 'Q'){
+            if(item == 'U' || item == 'F' || item == 'M' || item == 'Q'
+                    || (item == 'B' && itemCount.get('E')%2 == 0)){
                 continue;
             }
 
@@ -201,7 +202,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("EEEEBB"));
+        System.out.println(checkoutSolution.checkout("B"));
     }
 }
+
 
