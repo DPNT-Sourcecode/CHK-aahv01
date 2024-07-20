@@ -7,6 +7,7 @@ import java.util.*;
 public class CheckoutSolution {
 
     private static final Map<Character, Product> products = new HashMap<>();
+    private static final Set<Character> specialOfferProducts = new HashSet<>(Arrays.asList('S', 'T', 'X', 'Y', 'Z'));
 
     {
         products.put('A', new Product(50));
@@ -100,25 +101,16 @@ public class CheckoutSolution {
                 total += remaining * product.price;
             }
 
-            //Apply special offers
-           /* if(!product.specialOffers.isEmpty()){
-                for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
-                    if(remaining < specialOffer.getKey()){
-                        continue;
-                    }
-                    int offerQuantity = specialOffer.getKey();
-                    int offerPrice = specialOffer.getValue();
+            if(specialOfferProducts.contains(item)){
+                specialOfferCount += count;
+            }
 
-                    total += offerPrice * (remaining / offerQuantity);
-                    count %= offerQuantity;
-                    remaining = count;
-                }
-                total += remaining * product.price;
-            }else{
+        }
 
-                //Add remaining items at regular price
-                total += product.price * count;
-            }*/
+        if (specialOfferCount >= 3) {
+            int applicableSets = specialOfferCount / 3;
+            total += applicableSets * 45;
+            specialOfferCount %= 3;
         }
 
         //Special case for E giving free B
@@ -225,7 +217,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        System.out.println(checkoutSolution.checkout("STX"));
     }
 }
+
 
