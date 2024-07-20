@@ -169,9 +169,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("R"));
+        System.out.println(checkoutSolution.checkout("AAA"));
     }
 }
+
 
 
 
