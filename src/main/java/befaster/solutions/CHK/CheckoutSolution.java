@@ -41,5 +41,11 @@ public class CheckoutSolution {
 
         return total;
     }
+
+    public static void main(String[] args) {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        System.out.println(checkoutSolution.checkout("B"));
+    }
 }
+
 
