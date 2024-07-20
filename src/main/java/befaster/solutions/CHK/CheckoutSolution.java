@@ -29,8 +29,8 @@ public class CheckoutSolution {
         products.put('I', new Product(35));
         products.put('J', new Product(60));
 
-        products.put('K', new Product(80));
-        products.get('K').addSpecialOffer(2, 150);
+        products.put('K', new Product(70));
+        products.get('K').addSpecialOffer(2, 120);
 
         products.put('L', new Product(90));
         products.put('M', new Product(15));
@@ -44,7 +44,7 @@ public class CheckoutSolution {
         products.get('Q').addSpecialOffer(3, 80);
 
         products.put('R', new Product(50));
-        products.put('S', new Product(30));
+        products.put('S', new Product(20));
         products.put('T', new Product(20));
         products.put('U', new Product(40));
 
@@ -53,9 +53,9 @@ public class CheckoutSolution {
         products.get('V').addSpecialOffer(2, 90);
 
         products.put('W', new Product(20));
-        products.put('X', new Product(90));
-        products.put('Y', new Product(10));
-        products.put('Z', new Product(50));
+        products.put('X', new Product(17));
+        products.put('Y', new Product(20));
+        products.put('Z', new Product(21));
     }
 
     public Integer checkout(String skus) {
@@ -72,6 +72,7 @@ public class CheckoutSolution {
 
         int total = 0;
 
+        int specialOfferCount = 0;
 
         //Process each product
         for(Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
@@ -227,3 +228,4 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
     }
 }
+
