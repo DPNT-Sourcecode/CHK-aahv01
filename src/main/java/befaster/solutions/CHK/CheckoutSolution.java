@@ -95,7 +95,9 @@ public class CheckoutSolution {
 
                     total += offerPrice * (remaining / offerQuantity);
                     count %= offerQuantity;
+                    remaining = count;
                 }
+                total += remaining * product.price;
             }else{
 
                 //Add remaining items at regular price
@@ -174,6 +176,7 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("AAAAA"));
     }
 }
+
 
 
 
