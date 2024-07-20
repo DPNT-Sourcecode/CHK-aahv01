@@ -17,8 +17,14 @@ public class CheckoutSolution {
     final int specialCountB = 2;
 
     public Integer checkout(String skus) {
+        if(skus == null || skus.isEmpty()) {
+            return -1;
+        }
         Map<Character, Integer> itemCount = new HashMap<>();
         for(char item : skus.toCharArray()) {
+            if(item != 'A' && item != 'B' && item != 'C' && item != 'D') {
+                return -1;
+            }
            itemCount.put(item, itemCount.getOrDefault(item, 0) + 1);
         }
         int total = 0;
@@ -44,9 +50,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("B"));
+        System.out.println(checkoutSolution.checkout("-"));
     }
 }
+
 
 
 
