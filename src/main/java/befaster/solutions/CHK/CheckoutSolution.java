@@ -128,7 +128,11 @@ public class CheckoutSolution {
             countB -= freeB;
             if(countB < 0) countB = 0;
         }
-        if(!(countB % 2 == 0)) total += countB * products.get('B').price;
+        if(!(countB % 2 == 0)){
+            total += countB * products.get('B').price;
+        }else{
+            total += countB * products.get('B').price / 2;
+        }
 
        //Special case for F (buy 2 get 1 free)
         int countF = itemCount.getOrDefault('F', 0);
@@ -205,3 +209,4 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"));
     }
 }
+
