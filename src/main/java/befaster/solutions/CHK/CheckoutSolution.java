@@ -12,6 +12,7 @@ public class CheckoutSolution {
     final int priceC = 20;
     final int priceD = 15;
     final int priceE = 40;
+    final int priceF = 10;
     final int specialPriceA3 = 130;
     final int specialCountA3 = 3;
     final int specialPriceA5 = 200;
@@ -22,7 +23,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         Map<Character, Integer> itemCount = new HashMap<>();
         for(char item : skus.toCharArray()) {
-            if(item != 'A' && item != 'B' && item != 'C' && item != 'D' && item != 'E'){
+            if(item != 'A' && item != 'B' && item != 'C' && item != 'D' && item != 'E' && item != 'F'){
                 return -1;
             }
            itemCount.put(item, itemCount.getOrDefault(item, 0) + 1);
@@ -68,13 +69,20 @@ public class CheckoutSolution {
         int countD = itemCount.getOrDefault('D', 0);
         total += countD * priceD;
 
+        int countF = itemCount.getOrDefault('F', 0);
+        if(countF >= 3){
+            total += (countF / 3) * 2 * priceF;
+            countF = countF % 3;
+        }
+        total += countF * priceF;
 
         return total;
     }
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("AAABBBCCCD"));
+        System.out.println(checkoutSolution.checkout("FFF"));
     }
 }
+
 
