@@ -83,26 +83,22 @@ public class CheckoutSolution {
                 continue;
             }
 
-//            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
-//                continue;
-//            }
-//
-//            if(product.specialOffers.isEmpty()){
-//                total += product.price * count;
-//                continue;
-//            }
+            //Apply special offers
             if(!product.specialOffers.isEmpty()){
-                //Apply special offers
+                int remaining = count;
                 for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
                     int offerQuantity = specialOffer.getKey();
                     int offerPrice = specialOffer.getValue();
 
-                    total += offerPrice * (count / offerQuantity);
+                    total += offerPrice * (remaining / offerQuantity);
                     count %= offerQuantity;
                 }
+                total += remaining * product.price;
+            }else{
+
+                //Add remaining items at regular price
+                total += product.price * count;
             }
-            //Add remaining items at regular price
-            total += product.price * count;
         }
 
         //Special case for E giving free B
@@ -173,8 +169,3 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("B"));
     }
 }
-
-
-
-
-
