@@ -113,6 +113,11 @@ public class CheckoutSolution {
             total += applicableSets * 45;
             specialOfferCount %= 3;
         }
+        itemsWithSpecialOffer = itemsWithSpecialOffer.
+        for(char item : itemsWithSpecialOffer){
+            total += itemCount.get(item) * products.get(item).price;
+        }
+
 
         //Special case for E giving free B
         int countB = itemCount.getOrDefault('B', 0);
@@ -221,6 +226,7 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("SSSTX"));
     }
 }
+
 
 
 
