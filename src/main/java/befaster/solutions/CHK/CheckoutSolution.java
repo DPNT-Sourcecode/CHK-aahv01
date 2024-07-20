@@ -75,6 +75,8 @@ public class CheckoutSolution {
 
         int specialOfferCount = 0;
 
+        Set<Character> itemsWithSpecialOffer = new HashSet<>();
+
         //Process each product
         for(Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
             char item = entry.getKey();
@@ -97,12 +99,11 @@ public class CheckoutSolution {
                 }
             }
 
-            if(item != 'B'  && item != 'Q'){
-                total += remaining * product.price;
-            }
-
             if(specialOfferProducts.contains(item)){
                 specialOfferCount += count;
+                itemsWithSpecialOffer.add(item);
+            }else if(item != 'B'  && item != 'Q'){
+                total += remaining * product.price;
             }
 
         }
@@ -217,8 +218,9 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("STX"));
+        System.out.println(checkoutSolution.checkout("SSSTX"));
     }
 }
+
 
 
