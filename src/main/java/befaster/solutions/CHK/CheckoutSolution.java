@@ -153,10 +153,11 @@ public class CheckoutSolution {
         if(countU >= 4){
             total += (countU / 4) * 3 * products.get('U').price;
             countU = countU % 4;
-            total += countU * products.get('U').price;
         }
+        total += countU * products.get('U').price;
 
         return total;
+        
     }
 
     class Product {
@@ -187,8 +188,9 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("N"));
+        System.out.println(checkoutSolution.checkout("UUUU"));
     }
 }
+
 
 
