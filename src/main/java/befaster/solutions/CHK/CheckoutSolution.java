@@ -113,7 +113,7 @@ public class CheckoutSolution {
             total += applicableSets * 45;
             specialOfferCount %= 3;
         }
-        itemsWithSpecialOffer = Arrays.copyOfRange(itemsWithSpecialOffer, itemsWithSpecialOffer.size() - specialOfferCount, itemsWithSpecialOffer.size());
+        itemsWithSpecialOffer = itemsWithSpecialOffer.subList(itemsWithSpecialOffer.size() - specialOfferCount - 1, itemsWithSpecialOffer.size() - 1);
         for(char item : itemsWithSpecialOffer){
             total += itemCount.get(item) * products.get(item).price;
         }
@@ -226,3 +226,4 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("SSSTX"));
     }
 }
+
