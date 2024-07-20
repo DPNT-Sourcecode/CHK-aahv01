@@ -82,7 +82,7 @@ public class CheckoutSolution {
 
             if(item == 'U' || item == 'F' || item == 'M'
                     || (item == 'B' && (itemCount.get('E') != null && itemCount.get('E')%2 == 0))
-                    || (item == 'Q' && (itemCount.get('R') != null && itemCount.get('R')%3 == 0))){
+                    || (item == 'Q' && (itemCount.get('R') != null && itemCount.get('R') >= 3))){
                 continue;
             }
 
@@ -202,9 +202,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("RRRRQ"));
+        System.out.println(checkoutSolution.checkout("RRRRRRQQ"));
     }
 }
+
 
 
 
