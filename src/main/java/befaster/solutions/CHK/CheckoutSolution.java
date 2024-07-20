@@ -119,15 +119,14 @@ public class CheckoutSolution {
             if(countB < 0) countB = 0;
             total += countB * products.get('B').price;
         }
-        total += countE * products.get('E').price;
 
        //Special case for F (buy 2 get 1 free)
         int countF = itemCount.getOrDefault('F', 0);
         if(countF >= 3){
             total += (countF / 3) * 2 * products.get('F').price;
             countF = countF % 3;
+            total += countF * products.get('F').price;
         }
-        total += countF * products.get('F').price;
 
         //Special case for N giving free M
         int countM = itemCount.getOrDefault('M', 0);
@@ -138,7 +137,6 @@ public class CheckoutSolution {
             if(countM < 0) countM = 0;
             total += countM * products.get('M').price;
         }
-        total += countN * products.get('N').price;
 
         //Special case for R giving free Q
         int countQ = itemCount.getOrDefault('Q', 0);
@@ -149,15 +147,14 @@ public class CheckoutSolution {
             if(countQ < 0) countQ = 0;
             total += countQ * products.get('Q').price;
         }
-        total += countR * products.get('R').price;
 
         //Special case for U (buy 3 get 1 free)
         int countU = itemCount.getOrDefault('U', 0);
         if(countU >= 4){
             total += (countU / 4) * 3 * products.get('U').price;
             countU = countU % 4;
+            total += countU * products.get('U').price;
         }
-        total += countU * products.get('U').price;
 
         return total;
     }
@@ -190,7 +187,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("AAA"));
+        System.out.println(checkoutSolution.checkout("N"));
     }
 }
+
 
