@@ -123,6 +123,8 @@ public class CheckoutSolution {
             countB -= freeB;
             if(countB < 0) countB = 0;
             total += countB * products.get('B').price;
+        }else{
+            total += countB * products.get('B').price;
         }
 
        //Special case for F (buy 2 get 1 free)
@@ -130,6 +132,8 @@ public class CheckoutSolution {
         if(countF >= 3){
             total += (countF / 3) * 2 * products.get('F').price;
             countF = countF % 3;
+            total += countF * products.get('F').price;
+        }else{
             total += countF * products.get('F').price;
         }
 
@@ -141,6 +145,8 @@ public class CheckoutSolution {
             countM -= freeM;
             if(countM < 0) countM = 0;
             total += countM * products.get('M').price;
+        }else{
+            total += countM * products.get('M').price;
         }
 
         //Special case for R giving free Q
@@ -150,6 +156,8 @@ public class CheckoutSolution {
             int freeQ = countR / 3;
             countQ -= freeQ;
             if(countQ < 0) countQ = 0;
+            total += countQ * products.get('Q').price;
+        }else{
             total += countQ * products.get('Q').price;
         }
 
@@ -193,9 +201,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("UUUUUUUU"));
+        System.out.println(checkoutSolution.checkout("Q"));
     }
 }
+
 
 
 
