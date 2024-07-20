@@ -79,6 +79,10 @@ public class CheckoutSolution {
             int count = entry.getValue();
             Product product = products.get(item);
 
+            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
+                continue;
+            }
+
 //            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
 //                continue;
 //            }
@@ -166,9 +170,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("F"));
+        System.out.println(checkoutSolution.checkout("B"));
     }
 }
+
 
 
 
