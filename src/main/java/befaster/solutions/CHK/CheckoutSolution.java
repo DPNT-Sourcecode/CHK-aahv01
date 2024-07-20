@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
-    Map<Character, Integer> itemCount = new HashMap<>();
     final int priceA = 50;
     final int priceB = 30;
     final int priceC = 20;
@@ -18,6 +17,7 @@ public class CheckoutSolution {
     final int specialCountB = 2;
 
     public Integer checkout(String skus) {
+        Map<Character, Integer> itemCount = new HashMap<>();
         for(char item : skus.toCharArray()) {
            itemCount.put(item, itemCount.getOrDefault(item, 0) + 1);
         }
@@ -47,5 +47,6 @@ public class CheckoutSolution {
         System.out.println(checkoutSolution.checkout("B"));
     }
 }
+
 
 
