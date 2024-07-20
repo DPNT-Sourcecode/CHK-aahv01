@@ -72,12 +72,17 @@ public class CheckoutSolution {
 
         int total = 0;
 
+
         //Process each product
         for(Map.Entry<Character, Integer> entry : itemCount.entrySet()) {
             char item = entry.getKey();
             int count = entry.getValue();
             Product product = products.get(item);
             int remaining = count;
+
+            if(item == 'U' || item == 'B' || item == 'F' || item == 'M' || item == 'Q'){
+                continue;
+            }
 
             for(Offer offer : product.specialOffers){
                 if(remaining >= offer.quantity){
@@ -157,7 +162,7 @@ public class CheckoutSolution {
         total += countU * products.get('U').price;
 
         return total;
-        
+
     }
 
     class Product {
@@ -188,9 +193,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("UUUU"));
+        System.out.println(checkoutSolution.checkout("UUUUUUUU"));
     }
 }
+
 
 
 
