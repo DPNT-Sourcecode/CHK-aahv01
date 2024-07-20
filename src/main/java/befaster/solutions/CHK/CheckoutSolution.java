@@ -79,21 +79,23 @@ public class CheckoutSolution {
             int count = entry.getValue();
             Product product = products.get(item);
 
-            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
-                continue;
-            }
+//            if(item == 'E' || item == 'F' || item == 'N' || item == 'R' || item == 'U'){
+//                continue;
+//            }
+//
+//            if(product.specialOffers.isEmpty()){
+//                total += product.price * count;
+//                continue;
+//            }
+            if(!product.specialOffers.isEmpty()){
+                //Apply special offers
+                for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
+                    int offerQuantity = specialOffer.getKey();
+                    int offerPrice = specialOffer.getValue();
 
-            if(product.specialOffers.isEmpty()){
-                total += product.price * count;
-                continue;
-            }
-            //Apply special offers
-            for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
-                int offerQuantity = specialOffer.getKey();
-                int offerPrice = specialOffer.getValue();
-
-                total += offerPrice * (count / offerQuantity);
-                count %= offerQuantity;
+                    total += offerPrice * (count / offerQuantity);
+                    count %= offerQuantity;
+                }
             }
             //Add remaining items at regular price
             total += product.price * count;
@@ -107,6 +109,7 @@ public class CheckoutSolution {
             countB -= freeB;
             if(countB < 0) countB = 0;
         }
+        total += countB * products.get('B').price;
 
        //Special case for F (buy 2 get 1 free)
         int countF = itemCount.getOrDefault('F', 0);
@@ -124,6 +127,7 @@ public class CheckoutSolution {
             countM -= freeM;
             if(countM < 0) countM = 0;
         }
+        total += countM * products.get('M').price;
 
         //Special case for R giving free Q
         int countQ = itemCount.getOrDefault('Q', 0);
@@ -133,6 +137,7 @@ public class CheckoutSolution {
             countQ -= freeQ;
             if(countQ < 0) countQ = 0;
         }
+        total += countQ * products.get('Q').price;
 
         //Special case for U (buy 3 get 1 free)
         int countU = itemCount.getOrDefault('U', 0);
@@ -161,7 +166,8 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("FFF"));
+        System.out.println(checkoutSolution.checkout("R"));
     }
 }
+
 
