@@ -92,7 +92,9 @@ public class CheckoutSolution {
                 }
             }
 
-            total += remaining * product.price;
+            if(item != 'B'){
+                total += remaining * product.price;
+            }
 
             //Apply special offers
            /* if(!product.specialOffers.isEmpty()){
@@ -199,9 +201,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("BBBB"));
+        System.out.println(checkoutSolution.checkout("EEB"));
     }
 }
+
 
 
 
