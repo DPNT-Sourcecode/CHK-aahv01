@@ -110,6 +110,8 @@ public class CheckoutSolution {
 
         }
 
+        itemsWithSpecialOffer.sort((a,b) -> Integer.compare(products.get(b).price, products.get(a).price));
+
         if (specialOfferCount >= 3) {
             int applicableSets = specialOfferCount / 3;
             total += applicableSets * 45;
@@ -117,7 +119,7 @@ public class CheckoutSolution {
         }
         itemsWithSpecialOffer = itemsWithSpecialOffer.subList(itemsWithSpecialOffer.size() - specialOfferCount, itemsWithSpecialOffer.size());
         for(char item : itemsWithSpecialOffer){
-            total += itemCount.get(item) * products.get(item).price;
+            total += products.get(item).price;
         }
 
 
@@ -225,9 +227,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("SSSZ"));
+        System.out.println(checkoutSolution.checkout("STXZ"));
     }
 }
+
 
 
 
