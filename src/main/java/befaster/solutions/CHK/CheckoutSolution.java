@@ -87,13 +87,15 @@ public class CheckoutSolution {
             if(!product.specialOffers.isEmpty()){
                 int remaining = count;
                 for(Map.Entry<Integer, Integer> specialOffer : product.specialOffers.entrySet()) {
+                    if(remaining < specialOffer.getKey()){
+                        continue;
+                    }
                     int offerQuantity = specialOffer.getKey();
                     int offerPrice = specialOffer.getValue();
 
                     total += offerPrice * (remaining / offerQuantity);
                     count %= offerQuantity;
                 }
-                total += remaining * product.price;
             }else{
 
                 //Add remaining items at regular price
@@ -169,9 +171,10 @@ public class CheckoutSolution {
 
     public static void main(String[] args) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        System.out.println(checkoutSolution.checkout("AAA"));
+        System.out.println(checkoutSolution.checkout("AAAAA"));
     }
 }
+
 
 
 
